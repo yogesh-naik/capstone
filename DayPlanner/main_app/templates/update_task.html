@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="title">Orignal Task: {{task.name}}</div>
+{% comment %} <p class="title">{{task.name}}</p> {% endcomment %}
+
+<form action="" method="post">
+  {% csrf_token %} {{form.as_p}} <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<form method="post">
+  <!-- Security Feature  -->
+  {% csrf_token %}
+  <!--  Generate inputs  -->
+  {{form.as_p}}
+  <!--  Submit form  -->
+  <input type="submit" value="Submit" />
+</form>
+<br>
+
+<div>
+  <h1>{{header}}</h1>
+  {% for task in tasks %}
+  <div class="message-header">
+    <h1>{{task.name}}</h1>
+    {% comment %} <a href="{% url 'task_update' task.pk %}">Edit</a> {% endcomment %}
+    <form action="{% url 'task_update' task.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Edit" />
+    </form>
+    {% comment %} <a href="{% url 'deletetask' task.pk %}" value="delete">Delete</a> {% endcomment %}
+    <form action="{% url 'deletetask' task.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Delete" />
+    </form>
+  </div>
+  <br>
+  {% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Task Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+{% endblock %}
