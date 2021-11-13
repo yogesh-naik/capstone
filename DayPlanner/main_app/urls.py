@@ -20,10 +20,12 @@ from .import views
 
 urlpatterns = [
     path('', views.Home.as_view(),name="home"),
-    path('about/', views.About,name="about"),
+    # path('about/', views.About,name="about"),
     
     path('addtask/', views.CreateTask,name="addtask"),
     path('addtask/<int:pk>/', views.UpdateTask, name="task_update"),
     path('addtask/<int:pk>/delete', views.DeleteTask, name="deletetask"),
-
+    
+    path('addtask/deletecomment', views.DeleteComment, name="delete_comment"),
+    path('searchTask/',views.SearchTask, name="search_task")
 ]

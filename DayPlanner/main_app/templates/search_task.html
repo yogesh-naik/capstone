@@ -1,15 +1,19 @@
 {% extends 'base.html' %} {% block content %}
+<h1 class="title">Find Task</h1>
 
-<h1 class="title">{{header}}</h1>
-<form method="post">
-  <!-- Security Feature  -->
-  {% csrf_token %}
-  <!--  Generate inputs  -->
-  {{form.as_p}}
-  <!--  Submit form  -->
-   <button type="submit" name="addTask">Add Task</button>
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <!--  Our input will search by name of artist  -->
+      <input class="input" type="text" name="task" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <!--  This anchor tag will redirect back to artist list without a query param -->
+  {% comment %} <a class="button is-dark" placeholder="name">Clear Task</a> {% endcomment %}
 </form>
-<br>
 
 <div>
   {% for task in tasks %}
@@ -35,25 +39,4 @@
   </article>
   {% endfor %}
 </div>
-<br>
-
-
-<!-- Display the comment-->
-{% if comment %}
-<h1 class="title">{{comment.comments}}</h1>
-<form action="{% url 'delete_comment'%}" method="POST">
-  {% csrf_token %}
-  <input type="submit" value="Delete Comment" />
-</form>
-{% else %}
-<form method="post">
-  <!-- Security Feature  -->
-  {% csrf_token %}
-  <!--  Generate inputs  -->
-  {{commentform.as_p}}
-  <!--  Submit form  -->
-  <button type="submit" name="addComment">Add Comment</button>
-</form>
-<br>
-{% endif %}
 {% endblock %}
