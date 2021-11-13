@@ -1,4 +1,4 @@
-# capstone
+# capstone - Daily Reminder
 
 # ER Diagram
 
