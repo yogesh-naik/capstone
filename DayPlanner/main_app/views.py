@@ -112,7 +112,7 @@ def SearchTask(request):
         # context["tasks"] = Task.objects.filter(name__icontains=taskTag , user=request.user)
         
         # Example 2 with AND(&) operater
-        context["tasks"] = Task.objects.filter(Q(name__contains = taskTag) & Q(user=request.user))
+        context["tasks"] = Task.objects.filter(Q(name__contains = taskTag.casefold()) & Q(user=request.user))
     else:
          context["empty"] = "No Task Available"
     return render(request,"search_task.html",context)
