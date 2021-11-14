@@ -1,0 +1,72 @@
+body {
+    background-color:#CDCDCD;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+
+.btn {
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+}
+
+/* For buttons */
+.btn:hover .btn-slide-show-text1 {
+	margin-left: 65px;
+}
+
+.flash-slide {
+	border: none;
+	display: inline-block;
+	color: rgb(255, 255, 255);
+	margin: 20px;
+	width: 180px;
+	height: 50px;
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: Helvetica;
+	text-align: center;
+}
+
+.flash-slide::before {
+	content: "";
+	position: absolute;
+	top: -30px;
+	left: -80px;
+	height: 100px;
+	width: 70px;
+	background: rgba(255, 255, 255, 0.3);
+	transform: rotate(20deg);
+}
+
+.flash-slide:hover::before {
+	left: 190px;
+	transition: all 0.5s ease 0s;
+}
+
+.flash-slide--black {
+	background: rgb(51, 51, 51);
+}
+
+
+/* **************************/
+.title{
+    color:white;
+    font-style: italic;
+}
+
+.message-header{
+    border-radius: 20px;
+}
+
+.form-name{
+    font-size: 30px;
+    color:gray;
+}
+
+#id_name{
+    width: 50%;
+    height: 150px;
+}

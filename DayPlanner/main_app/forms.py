@@ -8,6 +8,7 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['name','tag']
+        labels = {'name': 'Task'}
         # exclude = ['user']
         
         def __init__(self, *args, **kwargs):
@@ -17,6 +18,7 @@ class TaskEditForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['name','tag']
+        labels = {'name': 'Task'}
         
         def __init__(self, *args, **kwargs):
             super(TaskEditForm, self).__init__(*args, **kwargs)
@@ -27,3 +29,4 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comments']
+        labels = {'comments': 'Comments/Reminders'}

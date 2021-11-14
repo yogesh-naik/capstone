@@ -104,7 +104,7 @@ def DeleteComment(request):
 @login_required
 def SearchTask(request):
     taskTag = request.GET.get("task")
-    print("--",taskTag)
+    # print("--",len(taskTag))
         # If a query exists we will filter by tasktag 
     context={}
     if taskTag != None:
@@ -112,6 +112,7 @@ def SearchTask(request):
         # context["tasks"] = Task.objects.filter(name__icontains=taskTag , user=request.user)
         
         # Example 2 with AND(&) operater
-        context["tasks"] = Task.objects.filter(Q(name__startswith = taskTag) & Q(user=request.user))
-        print(context)
+        context["tasks"] = Task.objects.filter(Q(name__contains = taskTag) & Q(user=request.user))
+    else:
+         context["empty"] = "No Task Available"
     return render(request,"search_task.html",context)
