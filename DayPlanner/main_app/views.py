@@ -1,14 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView,View
 from django.utils.decorators import method_decorator
 from .forms import CommentForm, TaskForm,TaskEditForm
 from main_app.models import Task,Comment
 from django.db.models import Q     
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class Home(TemplateView):
     template_name = "home.html"
 
@@ -113,6 +114,22 @@ def SearchTask(request):
         
         # Example 2 with AND(&) operater
         context["tasks"] = Task.objects.filter(Q(name__contains = taskTag.casefold()) & Q(user=request.user))
+        print(context)
     else:
          context["empty"] = "No Task Available"
     return render(request,"search_task.html",context)
+
+
+def Signup(request):
+    form = UserCreationForm()
+    context = {"form": form}
+        
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # login(request, user)
+            return redirect('/addtask')
+    else:
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)

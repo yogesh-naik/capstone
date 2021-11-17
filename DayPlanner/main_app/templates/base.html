@@ -11,7 +11,7 @@
 
     <!-- in our html head tag add the following  -->
     <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
-    <script src="{% static 'scripts/main.js' %}" defer></script>
+    {% comment %} <script src="{% static 'scripts/main.js' %}" defer></script> {% endcomment %}
   </head>
 
 <body>
@@ -36,6 +36,7 @@
         {% else %}
         <div class="navbar-menu navbar-end">
           <a class="navbar-item" href="{% url 'login' %}">Log In</a>
+          <a class="navbar-item" href="{% url 'signup' %}">Sign Up</a>
         </div>
         {% endif %}
     </nav>

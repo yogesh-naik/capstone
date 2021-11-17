@@ -27,5 +27,6 @@ urlpatterns = [
     path('addtask/<int:pk>/delete', views.DeleteTask, name="deletetask"),
     
     path('addtask/deletecomment', views.DeleteComment, name="delete_comment"),
-    path('searchTask/',views.SearchTask, name="search_task")
+    path('searchTask/',views.SearchTask, name="search_task"),
+    path('accounts/signup/', views.Signup, name="signup"),
 ]
